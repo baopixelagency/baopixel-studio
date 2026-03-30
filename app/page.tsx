@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 // ═══════════════════════════════════════════════════════════════
 // TYPES
@@ -1438,7 +1439,10 @@ export default function BaoPixelStudio(){
         <ProgressBar val={pct}/>
         <div style={{fontSize:10,color:'var(--muted)',marginTop:4}}>{pct}% · Objectif {fmtK(goal)} FCFA</div>
         <button onClick={()=>{const v=prompt('Objectif mensuel (FCFA) :');if(v&&!isNaN(Number(v)))setGoal(Number(v))}} className="btn-secondary btn-sm" style={{marginTop:6,width:'100%',fontSize:11}}>✎ Modifier objectif</button>
-        <button onClick={()=>{setLocked(true);setPinBuf('');setPinFirst('');setPinMsg('')}} style={{display:'flex',alignItems:'center',gap:8,width:'100%',padding:'8px 10px',borderRadius:8,background:'none',border:'none',color:'var(--muted)',cursor:'pointer',fontSize:12,marginTop:4,fontFamily:'inherit'}}>🔒 Verrouiller</button>
+        <div style={{display:'flex',gap:8,marginTop:8}}>
+          <button onClick={()=>{setLocked(true);setPinBuf('');setPinFirst('');setPinMsg('')}} style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',padding:'6px 8px',borderRadius:8,background:'none',border:'1px solid var(--border)',color:'var(--muted)',cursor:'pointer',fontSize:12,fontFamily:'inherit'}}>🔒</button>
+          <ThemeToggle/>
+        </div>
       </div>
     </aside>
 
