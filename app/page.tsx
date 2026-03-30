@@ -383,20 +383,21 @@ function Pipeline({clients,setClients}:{clients:Client[];setClients:(c:Client[])
               <div className="text-muted">{cols.length} contact(s)</div>
             </div>
             <div style={{padding:'10px',display:'flex',flexDirection:'column',gap:8,minHeight:120}}>
-              {cols.map(c=><div key={c.id} className="kanban-card surface" draggable
-                onDragStart={()=>setDragId(c.id)}
-                onDragEnd={()=>setDragId(null)}
-                style={{padding:'10px 12px',cursor:'grab',position:'relative'}}>
-                <div style={{fontWeight:700,fontSize:13,marginBottom:4}}>{c.nom}</div>
-                <div className="text-muted" style={{marginBottom:6}}>{c.secteur} · {fmtK(c.montant)} FCFA</div>
-                <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
-                  <span style={{fontSize:10,background:`${SECTEUR_COLORS[c.secteur]||'#7A7068'}22`,color:SECTEUR_COLORS[c.secteur]||'#7A7068',padding:'2px 8px',borderRadius:20,fontWeight:600}}>{c.secteur}</span>
+              {cols.map(c=>{
+                const handleDragStart=()=>setDragId(c.id)
+                const handleDragEnd=()=>setDragId(null)
+                return <div key={c.id} className="kanban-card surface" draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} style={{padding:'10px 12px',cursor:'grab',position:'relative'}}>
+                  <div style={{fontWeight:700,fontSize:13,marginBottom:4}}>{c.nom}</div>
+                  <div className="text-muted" style={{marginBottom:6}}>{c.secteur} · {fmtK(c.montant)} FCFA</div>
+                  <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
+                    <span style={{fontSize:10,background:`${SECTEUR_COLORS[c.secteur]||'#7A7068'}22`,color:SECTEUR_COLORS[c.secteur]||'#7A7068',padding:'2px 8px',borderRadius:20,fontWeight:600}}>{c.secteur}</span>
+                  </div>
+                  <div style={{display:'flex',gap:4,marginTop:8}}>
+                    <button className="btn-secondary btn-sm" style={{fontSize:10,padding:'3px 8px'}} onClick={()=>{setSel(c);setForm(c);setModal('edit')}}>✎</button>
+                    {c.contact&&<button className="btn-primary btn-sm" style={{fontSize:10,padding:'3px 8px'}} onClick={()=>{setSel(c);setModal('whatsapp')}}>📱</button>}
+                  </div>
                 </div>
-                <div style={{display:'flex',gap:4,marginTop:8}}>
-                  <button className="btn-secondary btn-sm" style={{fontSize:10,padding:'3px 8px'}} onClick={()=>{setSel(c);setForm(c);setModal('edit')}}>✎</button>
-                  {c.contact&&<button className="btn-primary btn-sm" style={{fontSize:10,padding:'3px 8px'}} onClick={()=>{setSel(c);setModal('whatsapp')}}>📱</button>}
-                </div>
-              </div>)}
+              })}
               {cols.length===0&&<div className="text-muted" style={{textAlign:'center',padding:'20px 0',fontSize:12}}>Glissez une carte ici</div>}
             </div>
           </div>
