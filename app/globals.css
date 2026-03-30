@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080706;
+  --surface: #110F0E;
+  --card: #181614;
+  --card2: #1E1B19;
+  --border: #262220;
+  --border2: #2E2A27;
+
+  --purple: #7C3AED;
+  --purple-d: #5B21B6;
+  --purple-l: #A78BFA;
+  --purple-s: #1A1028;
+  --purple-s2: #120B1E;
+
+  --orange: #F97316;
+  --orange-s: #271508;
+
+  --green: #10B981;
+  --green-s: #0C1F18;
+
+  --red: #EF4444;
+  --red-s: #1F0C0C;
+
+  --yellow: #F59E0B;
+  --yellow-s: #1A1200;
+
+  --blue: #60A5FA;
+  --blue-s: #0D1525;
+
+  --pink: #F472B6;
+  --pink-s: #1F0E18;
+
+  --text: #EDE8E3;
+  --muted: #7A7068;
+  --dim: #3A3530;
+}
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+* { scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
+
+.jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* Animations */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes glow { 0%,100% { box-shadow: 0 0 20px rgba(124,58,237,.3); } 50% { box-shadow: 0 0 40px rgba(124,58,237,.6); } }
+
+.fade-up { animation: fadeUp .25s ease; }
+.fade-in { animation: fadeIn .2s ease; }
+.pulse { animation: pulse 2s infinite; }
+.spin { animation: spin 1s linear infinite; }
+.glow { animation: glow 3s ease-in-out infinite; }
+
+/* Kanban drag */
+.kanban-col.drag-over { border-color: var(--purple) !important; background: var(--purple-s) !important; }
+.kanban-card { cursor: grab; }
+.kanban-card:active { cursor: grabbing; }
+.kanban-card.dragging { opacity: .5; }
+
+/* Print styles for PDF */
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+}
