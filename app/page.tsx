@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { ThemeToggle } from '@/components/ThemeToggle'
+import { ThemeToggle } from '../components/ThemeToggle'
 
 // ═══════════════════════════════════════════════════════════════
 // TYPES
