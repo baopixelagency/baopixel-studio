@@ -383,10 +383,10 @@ function Pipeline({clients,setClients}:{clients:Client[];setClients:(c:Client[])
               <div className="text-muted">{cols.length} contact(s)</div>
             </div>
             <div style={{padding:'10px',display:'flex',flexDirection:'column',gap:8,minHeight:120}}>
-              {cols.map(c=><div key={c.id} className="kanban-card" draggable
+              {cols.map(c=><div key={c.id} className="kanban-card surface" draggable
                 onDragStart={()=>setDragId(c.id)}
                 onDragEnd={()=>setDragId(null)}
-                className="surface" style={{padding:'10px 12px',cursor:'grab',position:'relative'}}>
+                style={{padding:'10px 12px',cursor:'grab',position:'relative'}}>
                 <div style={{fontWeight:700,fontSize:13,marginBottom:4}}>{c.nom}</div>
                 <div className="text-muted" style={{marginBottom:6}}>{c.secteur} · {fmtK(c.montant)} FCFA</div>
                 <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
